@@ -1,0 +1,24 @@
+local rep = game.ReplicatedStorage
+
+game.Players.PlayerAdded:Connect(function(plr)
+	
+	local leaderstats = Instance.new('Folder',plr)
+	leaderstats.Name = "leaderstats"
+	
+	local clicks = Instance.new('IntValue',leaderstats)
+	clicks.Name = "Clicks"
+	
+end)
+
+
+
+
+-- Events
+
+rep.MainEvents.PlayerClick.OnServerEvent:Connect(function(plr)
+	
+	local plrLS = plr.leaderstats
+	
+	plrLS.Clicks.Value += 1 -- adds a click to clciks
+	
+end)
