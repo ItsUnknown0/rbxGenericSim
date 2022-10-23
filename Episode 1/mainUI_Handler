@@ -1,0 +1,22 @@
+local gui = script.Parent
+local statsFrame = gui:WaitForChild('StatsFrame')
+local clickButton = gui:WaitForChild('Click')
+
+local db = true
+
+clickButton.MouseButton1Click:Connect(function()
+	if db then
+		db = false
+		rep.MainEvents.PlayerClick:FireServer()
+		task.wait(0.2)
+		db = true
+	end
+	
+end)
+
+statsFrame:WaitForChild('clicks').Text = "Clicks: ".. plrLS.Clicks.Value
+
+plrLS.Clicks.Changed:Connect(function(newVal)
+	statsFrame:WaitForChild('clicks').Text = "Clicks: ".. newVal
+end)
+
